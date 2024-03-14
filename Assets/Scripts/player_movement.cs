@@ -6,13 +6,12 @@ public class player_movement : MonoBehaviour
 {
     public int speed = 1;
     public int handCurrent = 1;
-    public Vector3 rrotation;
-    public Quaternion rotation;
-    public int rrot = 270;
+    private Vector3 rrotation;
+    private Quaternion rotation;
+    public int rrot = 5;
+    public int n_rrot = -270;
     public int lrot = -90;
     public Rigidbody playerrb;
-    public Rigidbody rhandrb;
-    public Rigidbody lhandrb;
     public GameObject player;
     // Start is called before the first frame update
     void Start()
@@ -24,48 +23,60 @@ public class player_movement : MonoBehaviour
     void Update()
     {
         //Movement
-        if(Input.GetKeyDown("up"))
+        if (Input.GetKeyDown("up"))
         {
             playerrb.velocity = transform.TransformDirection(Vector3.right * speed);
-        } else if(Input.GetKeyDown("down"))
+        }
+        else if (Input.GetKeyDown("down"))
         {
             playerrb.velocity = transform.TransformDirection(Vector3.left * speed);
         }
         //Rotation
-        if(Input.GetKey("right"))
+        if (Input.GetKeyDown("right"))
         {
             rotation = Quaternion.Euler(0, rrot, 0);
-            rrotation = new Vector3(0, rotation.y, 0);
+            //print(rotation);
+            rrotation = new Vector3(0, rotation.y*100, 0);
+            Quaternion r = transform.rotation;
             player.transform.Rotate(rrotation);
-        }else if(Input.GetKey("left"))
+            print(r + "         " + transform.rotation);
+        }
+        else if (Input.GetKey("left"))
         {
-            rotation = Quaternion.Euler(0, lrot, 0);
-            rrotation = new Vector3(0, rotation.y, 0);
+            rotation = Quaternion.Euler(0, -rrot, 0);
+            //print(rotation);
+            rrotation = new Vector3(0, rotation.y*100, 0);
             player.transform.Rotate(rrotation);
         }
-        //Zeros velocity
-        if(Input.GetKey("0"))
+
+        if (Input.GetKey("-"))
         {
-            playerrb.velocity = new Vector3(0,0,0);
+            rotation = Quaternion.Euler(0, 0, rrot);
+            rrotation = new Vector3(0, 0, rotation.z);
+            player.transform.Rotate(rrotation);
         }
-        //moves hands
-        if (Input.GetKeyDown("8"))
+        
+        //Zeros velocity/rotation
+        if (Input.GetKey("0"))
         {
-            if(handCurrent == 0)
+            playerrb.velocity = new Vector3(0, 0, 0);
+        }
+        else if (Input.GetKey("*"))
+        {
+
+            //moves hands
+            if (Input.GetKeyDown("l"))
             {
-                lhandrb.velocity = transform.TransformDirection(Vector3.right * speed);
-            } else
-            {
-                rhandrb.velocity = transform.TransformDirection(Vector3.right * speed);
+                handCurrent = 0;
             }
-        } 
-        if (Input.GetKeyDown("2"))
-        {
-            playerrb.velocity = transform.TransformDirection(Vector3.down * speed);
         }
-        if(Input.GetKeyDown("l"))
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "door")
         {
-            handCurrent = 0;
+            player.GetComponent<GameManager>().door_move = true;
         }
     }
 }
