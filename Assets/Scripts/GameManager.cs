@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public bool door_move;
     public GameObject[] object_list;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,12 @@ public class GameManager : MonoBehaviour
     {
         if(door_move)
         {
-            object_list[0].transform.Translate(Vector3.up * 100);
+            object_list[0].transform.position = player.transform.position;
+            Invoke("Disable",3f);
         }
+    }
+    void Disable()
+    {
+        door_move = false;
     }
 }
