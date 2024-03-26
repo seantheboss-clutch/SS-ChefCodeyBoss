@@ -8,6 +8,7 @@ TagManager:
   - chair
   - door
   - water
+  - task
   layers:
   - Default
   - TransparentFX

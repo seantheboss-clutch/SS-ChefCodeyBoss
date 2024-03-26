@@ -6,8 +6,8 @@ public class player_movement : MonoBehaviour
 {
     public int speed = 1;
     public int handCurrent = 1;
-    private Vector3 rrotation;
-    private Quaternion rotation;
+    public Vector3 rrotation;
+    public Quaternion rotation;
     public int rrot = 270;
     public int n_rrot = -5;
     public int up_counter = 14;
@@ -105,11 +105,11 @@ public class player_movement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "door")
+        if(other.CompareTag("task"))
         {
-            GetComponent<GameManager>().door_move = true;
+            GetComponent<GameManager>().task = true;
         }
-    }
+    }*/
 }
