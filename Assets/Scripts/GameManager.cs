@@ -8,8 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public bool task;
     public GameObject[] object_list;
-    public GameObject player;
-    public int count_task = 0;
+    public GameObject left_hand;
+    public GameObject squirt;
+    public int count_task = 1;
     public Text task_count;
     // Start is called before the first frame update
     void Start()
@@ -22,16 +23,18 @@ public class GameManager : MonoBehaviour
     {
         if(task)
         {
+            count_task++;
             switch (count_task)
             {
                 case 1:
-                    GetComponent<cup_relocate>().cup_move = true;
-                    count_task++;
+                    left_hand.GetComponent<cup_relocate>().cup_move = true;
+                    //count_task++;
                     task_count.text = count_task.ToString();
+                    print("GET YOUR BUSINESS DONE!");
                     break;
                 case 2:
-                    GetComponent<fountain>().water_go = true;
-                    count_task++;
+                   squirt.GetComponent<fountain>().water_go = true;
+                    //count_task++;
                     break;
                 default:
                     print("HUmpfh");
@@ -39,7 +42,7 @@ public class GameManager : MonoBehaviour
 
 
 
-            } object_list[0].transform.position = player.transform.position;
+            }
             //Invoke("Disable",3f);
         }
     }

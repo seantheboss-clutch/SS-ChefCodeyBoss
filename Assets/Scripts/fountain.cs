@@ -8,7 +8,7 @@ public class fountain : MonoBehaviour
     public bool water_go;
     public GameObject droplet;
     public GameObject spigot_head;
-    public Text task_count; 
+    public Text task_count;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +20,11 @@ public class fountain : MonoBehaviour
     {
         if (water_go)
         {
-            for (int x = 0; x < 500; x++)
+            for(int x = 0; x < 500; x++)
             {
-                Instantiate(droplet, spigot_head.transform.position, Quaternion.identity);
+                Instantiate(droplet, new Vector3(droplet.transform.position.x, droplet.transform.position.y-x, droplet.transform.position.z), Quaternion.identity);
             }
+            water_go = false;
         }
     }
 }

@@ -6,7 +6,7 @@ public class cup_relocate : MonoBehaviour
 {
     public bool cup_move;
     public GameObject left_hand;
-    public Vector3 offset = new Vector3(0f, 1f, 0f);
+    public Vector3 offset = new Vector3(1f, 0f, 0f);
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,7 @@ public class cup_relocate : MonoBehaviour
     {
         if(cup_move)
         {
-            this.transform.position = new Vector3(left_hand.transform.position.x, left_hand.transform.position.y + offset.y, left_hand.transform.position.z);
+            this.transform.position = new Vector3(left_hand.transform.position.x+offset.x, left_hand.transform.position.y, left_hand.transform.position.z);
         }
     }
 }
