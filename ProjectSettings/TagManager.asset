@@ -6,9 +6,9 @@ TagManager:
   tags:
   - hand
   - chair
-  - door
   - water
-  - task
+  - drop
+  - key
   layers:
   - Default
   - TransparentFX

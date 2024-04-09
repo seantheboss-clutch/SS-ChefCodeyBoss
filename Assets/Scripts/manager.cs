@@ -1,27 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class player_movement : MonoBehaviour
+public class manager : MonoBehaviour
 {
     public int speed = 1;
-    public int handCurrent = 1;
     public Vector3 rrotation;
     public Quaternion rotation;
     public int rrot = 270;
-    public int n_rrot = -5;
-    public int up_counter = 14;
     public bool up_true = true;
     public bool space = false;
     public int x_rot;
-
+    public GameObject squirt;
+    public Vector3 fount_pos = new Vector3(-69.63f,-41.25f,6.47f);
     public Rigidbody playerrb;
     public GameObject player;
+    public GameObject cup;
+    public Text one_t;
+    public Text two_t;
+    public Text three_t;
+    public bool boo;
+    public bool one = false;
+    public bool two = false;
+    public bool three = false;
+    public GameObject droplet;
+
     // Start is called before the first frame update
     void Start()
     {
-        handCurrent = 1;
+        cup.GetComponent<BoxCollider>().enabled = true;
         Invoke("Disable", 3f);
+
     }
     void Disable()
     {
@@ -45,13 +55,13 @@ public class player_movement : MonoBehaviour
         {
             rotation = Quaternion.Euler(0, rrot, 0);
             //print(rotation);
-            rrotation = new Vector3(0,rotation.y, 0);
+            rrotation = new Vector3(0, rotation.y, 0);
             //Quaternion r = transform.rotation;
             player.transform.Rotate(rrotation);
             x_rot++;
             //print(r + "         " + transform.rotation);*/
         }
-         if (Input.GetKey("left"))
+        if (Input.GetKey("left"))
         {
             rotation = Quaternion.Euler(0, -rrot, 0);
             //print(rotation);
@@ -61,55 +71,32 @@ public class player_movement : MonoBehaviour
         }
         if (Input.GetKey("space"))
         {
-            playerrb.velocity = transform.TransformDirection(Vector3.up * speed/2);
+            playerrb.velocity = transform.TransformDirection(Vector3.up * speed / 2);
             print(playerrb.velocity.y);
         }
 
-        /*if (Input.GetKey("-") && up_true)
-        {
-            rotation = Quaternion.Euler(0, 0, rrot);
-            rrotation = new Vector3(0, 0, rotation.z);
-            player.transform.Rotate(rrotation);
-            up_counter--;
-            if(up_counter == 0)
-            {
-                up_true = false;
-            }
-        }
-        if (Input.GetKey("=") && up_true == false)
-        {
-            rotation = Quaternion.Euler(0, 0, rrot);
-            rrotation = new Vector3(0, 0, rotation.z);
-            player.transform.Rotate(rrotation);
-            up_counter++;
-            if (up_counter == 14)
-            {
-                up_true = true;
-            }
-        }*/
-
-        //Zeros velocity/rotation
         if (Input.GetKey("0"))
         {
             playerrb.velocity = new Vector3(0, 0, 0);
         }
-        else if (Input.GetKey("/"))
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "water")
         {
-
-            player.transform.Rotate(new Vector3(0, -x_rot, 0));
-           
+            one_t.text = "True";
         }
-        if (Input.GetKeyDown("l"))
+        if (collision.gameObject.tag == "drop")
         {
-            handCurrent = 0;
+            two_t.text = "True";
+        }
+        if(collision.gameObject.tag == "key")
+        {
+            Instantiate(droplet, new Vector3(droplet.transform.position.x, droplet.transform.position.y, droplet.transform.position.z), Quaternion.identity);
+        }
+        if (collision.gameObject.tag == "toast")
+        {
+            three_t.text = "True";
         }
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("task"))
-        {
-            GetComponent<GameManager>().task = true;
-        }
-    }*/
 }
