@@ -11,7 +11,7 @@ public class player_control : MonoBehaviour
     public int x_rot;
     public Rigidbody playerrb;
     public GameObject manager;
-    public Animator wake;
+    public bool jump;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,10 +53,14 @@ public class player_control : MonoBehaviour
         {
             playerrb.velocity = playerrb.transform.TransformDirection(Vector3.left * speed);
         }
-
         if (Input.GetKey("space"))
         {
-            playerrb.velocity = transform.TransformDirection(Vector3.up * speed / 2);
+
+            if (jump)
+            {
+                playerrb.velocity = transform.TransformDirection(Vector3.up * speed);
+                jump = false;
+            }
             //print(playerrb.velocity.y);
         }
         if(Input.GetKey("0"))
@@ -74,6 +78,10 @@ public class player_control : MonoBehaviour
         {
             manager.GetComponent<manager>().three = true;
 
+        }
+        if (collision.gameObject.tag == "ground")
+        {
+            jump = true;
         }
     }
 }

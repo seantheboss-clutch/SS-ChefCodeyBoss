@@ -12,5 +12,9 @@ public class cup_collide : MonoBehaviour
         {
             manager.GetComponent<manager>().two = true;
         }
+        if(collision.gameObject.tag == "load")
+        {
+            this.transform.position = new Vector3(-10f,-31f,58f);
+        }
     }
 }

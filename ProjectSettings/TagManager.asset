@@ -9,6 +9,9 @@ TagManager:
   - water
   - drop
   - key
+  - task
+  - load
+  - ground
   layers:
   - Default
   - TransparentFX

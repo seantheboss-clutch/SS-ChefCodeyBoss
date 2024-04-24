@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class manager : MonoBehaviour
 {
-    /*public bool up_true = true;
-    public bool space = false;*/
-   /* public GameObject squirt;*/
-   /* public Vector3 fount_pos = new Vector3(-69.63f,-41.25f,6.47f);*/
-    //public GameObject cup;
     public Text one_t;
     public Text two_t;
     public Text three_t;
@@ -20,35 +15,16 @@ public class manager : MonoBehaviour
     public bool three = false;
     public int timer = 3;
     public GameObject droplet;
-    public GameObject cup;
-
+    public GameObject[] water_g;
     // Start is called before the first frame update
     void Start()
     {
-        time_text.text = timer.ToString();
-        droplet.SetActive(false);
-        Timer();
+        droplet.GetComponent<Rigidbody>().useGravity = false;
+        //time_text.text = timer.ToString();
+       
     }
-    void Timer()
-    {
-        while(timer > 0)
-        {
-            timer -= 1/10;
-            time_text.text = Mathf.Floor(timer).ToString();
-            if(timer < 0) 
-            {
-                Disable(); 
-                break;
-            }
-        } 
-    }
-    void Disable()
-    {
-
-        one_t.text = "";
-        two_t.text = "";
-        three_t.text = "";
-    }
+  
+    
     void Update()
     {
         if (one)
@@ -57,9 +33,12 @@ public class manager : MonoBehaviour
         }
         if (two)
         {
-            droplet.SetActive(true);
-            droplet.transform.position = new Vector3(cup.transform.position.x + .25f,cup.transform.position.y + 1, cup.transform.position.z); ;
+
+            droplet.GetComponent<Rigidbody>().useGravity = true;
+            water_g[0].SetActive(false);
+            water_g[1].SetActive(false);
             two_t.text = "1";
+            
         }
         if (three)
         {
