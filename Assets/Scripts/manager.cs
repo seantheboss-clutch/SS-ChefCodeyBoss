@@ -5,15 +5,14 @@ using UnityEngine.UI;
 
 public class manager : MonoBehaviour
 {
-    public Text one_t;
-    public Text two_t;
-    public Text three_t;
+    public GameObject one_t;
+    public GameObject two_t;
+    public GameObject three_t;
     public Text time_text;
     public bool boo;
     public bool one = false;
     public bool two = false;
     public bool three = false;
-    public int timer = 3;
     public GameObject droplet;
     public GameObject[] water_g;
     // Start is called before the first frame update
@@ -21,6 +20,9 @@ public class manager : MonoBehaviour
     {
         droplet.GetComponent<Rigidbody>().useGravity = false;
         //time_text.text = timer.ToString();
+        one_t.SetActive(true);
+        two_t.SetActive(true);
+        three_t.SetActive(true);
        
     }
   
@@ -29,7 +31,7 @@ public class manager : MonoBehaviour
     {
         if (one)
         {
-            one_t.text = "1";
+            one_t.SetActive(false);
         }
         if (two)
         {
@@ -37,12 +39,12 @@ public class manager : MonoBehaviour
             droplet.GetComponent<Rigidbody>().useGravity = true;
             water_g[0].SetActive(false);
             water_g[1].SetActive(false);
-            two_t.text = "1";
+            two_t.SetActive(false);
             
         }
         if (three)
         {
-            three_t.text = "1";
+            three_t.SetActive(false);
         }
     }
 }

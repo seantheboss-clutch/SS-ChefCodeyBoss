@@ -12,6 +12,7 @@ TagManager:
   - task
   - load
   - ground
+  - toast
   layers:
   - Default
   - TransparentFX
