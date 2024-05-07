@@ -14,7 +14,7 @@ public class cup_collide : MonoBehaviour
         }
         if(collision.gameObject.tag == "load")
         {
-            this.transform.position = new Vector3(-10f,-31f,58f);
+            this.transform.position = new Vector3(-8.8f,-5.1f,57.1f);
         }
     }
 }
