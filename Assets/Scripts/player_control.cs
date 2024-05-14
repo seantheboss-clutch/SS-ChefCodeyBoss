@@ -67,6 +67,11 @@ public class player_control : MonoBehaviour
         {
             playerrb.velocity = new Vector3(0f, 0f, 0f);
         }
+        if(Physics.Raycast(this.transform.position,Vector3.forward, 10f))
+        {
+            print("Bonk");
+            print("");
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -80,6 +85,10 @@ public class player_control : MonoBehaviour
 
         }
         if (collision.gameObject.tag == "ground")
+        {
+            jump = true;
+        }
+        if (Physics.Raycast(this.transform.position,Vector3.down,5f))
         {
             jump = true;
         }

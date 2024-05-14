@@ -16,9 +16,9 @@ public class catapult : MonoBehaviour
     // Update is called once per frame
     private void OnCollisionEnter(Collision collision)
     {
-        
-        /*e_rig.useGravity = true;
-        while(e_rig.)
+
+       /* e_rig.useGravity = true;
+        while (eggo.transform.position)
         {
             StartCoroutine(One());
             StartCoroutine(Two());
