@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - hand
-  - chair
   - water
   - drop
   - key
@@ -13,6 +12,7 @@ TagManager:
   - load
   - ground
   - toast
+  - end
   layers:
   - Default
   - TransparentFX

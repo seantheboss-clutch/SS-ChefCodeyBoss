@@ -12,6 +12,7 @@ public class player_control : MonoBehaviour
     public Rigidbody playerrb;
     public GameObject manager;
     public bool jump;
+    public GameObject eggo;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,11 +64,11 @@ public class player_control : MonoBehaviour
             }
             //print(playerrb.velocity.y);
         }
-        if(Input.GetKey("0"))
+        if (Input.GetKey("0"))
         {
             playerrb.velocity = new Vector3(0f, 0f, 0f);
         }
-        if(Physics.Raycast(this.transform.position,Vector3.forward, 10f))
+        if (Physics.Raycast(this.transform.position, Vector3.forward, 10f))
         {
             print("Bonk");
             print("");
@@ -75,22 +76,23 @@ public class player_control : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "water")
-        {
+       if(collision.gameObject.tag == "water")
+       {
             manager.GetComponent<manager>().one = true;
-        }
-        if (collision.gameObject.tag == "toast")
-        {
+       }
+       if (collision.gameObject.tag == "toast")
+       {
             manager.GetComponent<manager>().three = true;
+       }
+       if (collision.gameObject.tag == "end")
+       {
+            manager.GetComponent<manager>().end = true;
+       }
 
-        }
-        if (collision.gameObject.tag == "ground")
-        {
-            jump = true;
-        }
-        if (Physics.Raycast(this.transform.position,Vector3.down,5f))
-        {
-            jump = true;
-        }
+       if (Physics.Raycast(this.transform.position, Vector3.down, 5f) || collision.gameObject.tag == "ground")
+       {
+           jump = true;
+       }
+        
     }
 }

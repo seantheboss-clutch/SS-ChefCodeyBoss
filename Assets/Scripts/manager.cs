@@ -13,8 +13,10 @@ public class manager : MonoBehaviour
     public bool one = false;
     public bool two = false;
     public bool three = false;
+    public bool end = false;
     public GameObject droplet;
     public GameObject[] water_g;
+    public Text score;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class manager : MonoBehaviour
         one_t.SetActive(true);
         two_t.SetActive(true);
         three_t.SetActive(true);
+        score.text = "";
        
     }
   
@@ -35,7 +38,6 @@ public class manager : MonoBehaviour
         }
         if (two)
         {
-
             droplet.GetComponent<Rigidbody>().useGravity = true;
             water_g[0].SetActive(false);
             water_g[1].SetActive(false);
@@ -45,6 +47,17 @@ public class manager : MonoBehaviour
         if (three)
         {
             three_t.SetActive(false);
+        }
+        if(end)
+        {
+            if(one & two & three)
+            {
+                score.text = "YOU WIN";
+            }
+            else
+            {
+                score.text = "YOU LOSE";
+            }
         }
     }
 }
