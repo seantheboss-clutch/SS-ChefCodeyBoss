@@ -13,6 +13,8 @@ public class player_control : MonoBehaviour
     public GameObject manager;
     public bool jump;
     public GameObject eggo;
+    public GameObject hand;
+    public bool t_coll;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +75,12 @@ public class player_control : MonoBehaviour
             print("Bonk");
             print("");
         }
+        if (t_coll)
+        {
+            eggo.transform.position = new Vector3(hand.transform.position.x, hand.transform.position.y + 1, hand.transform.position.z);
+            eggo.GetComponent<Collider>().enabled = false;
+            eggo.GetComponent<eggo_coll>().eggo_bool = true;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -83,7 +91,8 @@ public class player_control : MonoBehaviour
        if (collision.gameObject.tag == "toast")
        {
             manager.GetComponent<manager>().three = true;
-       }
+            t_coll = true;
+        }
        if (collision.gameObject.tag == "end")
        {
             manager.GetComponent<manager>().end = true;

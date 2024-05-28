@@ -15,12 +15,12 @@ public class manager : MonoBehaviour
     public bool three = false;
     public bool end = false;
     public GameObject droplet;
+    public Rigidbody dr;
     public GameObject[] water_g;
     public Text score;
     // Start is called before the first frame update
     void Start()
     {
-        droplet.GetComponent<Rigidbody>().useGravity = false;
         //time_text.text = timer.ToString();
         one_t.SetActive(true);
         two_t.SetActive(true);
@@ -34,11 +34,12 @@ public class manager : MonoBehaviour
     {
         if (one)
         {
+            dr.useGravity = false;
             one_t.SetActive(false);
         }
         if (two)
         {
-            droplet.GetComponent<Rigidbody>().useGravity = true;
+            dr.useGravity = true;
             water_g[0].SetActive(false);
             water_g[1].SetActive(false);
             two_t.SetActive(false);
