@@ -10,16 +10,21 @@ public class eggo_coll : MonoBehaviour
     {
         eggo_bool = false;
     }
+    private void Update()
+    {
+        //StartCoroutine("ColorChange");
+    }
     private void OnCollisionEnter(Collision collision)
     {
 
-        if(collision.gameObject.tag == "toast" && eggo_bool)
+        if(eggo_bool)
         {
             StartCoroutine("ColorChange");
         }
     }
-    void ColorChange()
+    private void ColorChange()
     {
+
         e_coll_r.material.SetColor("_Color", Color.black);
     }
 

@@ -79,7 +79,6 @@ public class player_control : MonoBehaviour
         {
             eggo.transform.position = new Vector3(hand.transform.position.x, hand.transform.position.y + 1, hand.transform.position.z);
             eggo.GetComponent<Collider>().enabled = false;
-            eggo.GetComponent<eggo_coll>().eggo_bool = true;
         }
     }
     private void OnCollisionEnter(Collision collision)
