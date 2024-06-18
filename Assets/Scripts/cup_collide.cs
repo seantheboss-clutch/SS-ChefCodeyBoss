@@ -7,6 +7,9 @@ public class cup_collide : MonoBehaviour
     public GameObject manager;
     public ParticleSystem waterdroplet;
     public GameObject plate;
+    public GameObject toaster_touch_object;
+    public Renderer cup_renderer;
+    public GameObject e;
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,10 +18,16 @@ public class cup_collide : MonoBehaviour
             waterdroplet.Play();
             Invoke("PauseParticle", 3f);
             manager.GetComponent<manager>().two = true;
+            cup_renderer.material.SetColor("_Color",Color.blue);
         }
         if(collision.gameObject.tag == "load")
         {
             this.transform.position = plate.transform.position;
+        }
+        if(collision.gameObject == toaster_touch_object)
+        {
+            manager.GetComponent<manager>().three = true;
+            e.GetComponent<eggo_coll>().eggo_bool = true;
         }
     }
    void PauseParticle()

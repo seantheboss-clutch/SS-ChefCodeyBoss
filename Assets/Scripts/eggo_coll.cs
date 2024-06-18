@@ -19,13 +19,7 @@ public class eggo_coll : MonoBehaviour
 
         if(eggo_bool)
         {
-            StartCoroutine("ColorChange");
+            e_coll_r.material.SetColor("_Color", Color.black);
         }
     }
-    private void ColorChange()
-    {
-
-        e_coll_r.material.SetColor("_Color", Color.black);
-    }
-
 }

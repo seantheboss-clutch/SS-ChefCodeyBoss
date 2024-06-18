@@ -78,8 +78,8 @@ public class player_control : MonoBehaviour
         if (t_coll)
         {
             eggo.transform.position = new Vector3(hand.transform.position.x, hand.transform.position.y + 1, hand.transform.position.z);
-            eggo.GetComponent<Collider>().enabled = false;
-        }
+/*            eggo.GetComponent<Collider>().enabled = false;
+*/        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -87,15 +87,14 @@ public class player_control : MonoBehaviour
        {
             manager.GetComponent<manager>().one = true;
        }
-       if (collision.gameObject.tag == "toast")
-       {
-            manager.GetComponent<manager>().three = true;
-            t_coll = true;
-        }
        if (collision.gameObject.tag == "end")
        {
             manager.GetComponent<manager>().end = true;
        }
+       if(collision.gameObject.tag == "toast")
+        {
+            t_coll = true;
+        }
 
        if (Physics.Raycast(this.transform.position, Vector3.down, 5f) || collision.gameObject.tag == "ground")
        {
