@@ -16,6 +16,10 @@ public class manager : MonoBehaviour
     public bool end = false;
     public GameObject[] water_g;
     public Text score;
+    public float s;
+    public float m;
+    public float h = 0;
+    public Text S;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,21 +34,30 @@ public class manager : MonoBehaviour
     
     void Update()
     {
-        if (two)
+        if(s > 60)
         {
-            water_g[0].SetActive(false);
-            water_g[1].SetActive(false);
-            
+            s = 0;
+            m += 1;
         }
-        if(end)
+        else
+        {
+            s += .01f;
+        }
+        S.text = m.ToString()+": "+s.ToString();
+        if (end)
         {
             if(one & two & three)
             {
                 score.text = "YOU WIN";
+                S.text = "Time: " + m.ToString() + ": " + s.ToString();
             }
             else
             {
                 score.text = "YOU LOSE";
+                print(one);
+                print(two);
+                print(three);
+                 
             }
         }
     }

@@ -7,11 +7,11 @@ TagManager:
   - hand
   - water
   - drop
-  - task
   - load
   - ground
   - toast
   - end
+  - plate
   layers:
   - Default
   - TransparentFX

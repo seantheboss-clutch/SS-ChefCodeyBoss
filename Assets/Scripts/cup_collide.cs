@@ -7,32 +7,29 @@ public class cup_collide : MonoBehaviour
     public GameObject manager;
     public ParticleSystem waterdroplet;
     public GameObject plate;
-    public GameObject toaster_touch_object;
     public Renderer cup_renderer;
-    public GameObject e;
+    public bool can_drop_cup;
+    public GameObject player;
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "drop")
         {
             waterdroplet.Play();
-            Invoke("PauseParticle", 3f);
             manager.GetComponent<manager>().two = true;
             cup_renderer.material.SetColor("_Color",Color.blue);
         }
-        if(collision.gameObject.tag == "load")
+    }
+    void Update()
+    {
+        if(can_drop_cup)
         {
-            this.transform.position = plate.transform.position;
-        }
-        if(collision.gameObject == toaster_touch_object)
-        {
-            manager.GetComponent<manager>().three = true;
-            e.GetComponent<eggo_coll>().eggo_bool = true;
+            this.transform.position = new Vector3(plate.transform.position.x - 10, plate.transform.position.y, plate.transform.position.z);
+            if(player.GetComponent<player_control>().t_coll)
+            {
+                player.GetComponent<player_control>().t_d = true;
+            }    
         }
     }
-   void PauseParticle()
-   {
-        waterdroplet.Pause();
-   }
 
 }
