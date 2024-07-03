@@ -24,7 +24,7 @@ public class cup_collide : MonoBehaviour
     {
         if(can_drop_cup)
         {
-            this.transform.position = new Vector3(plate.transform.position.x - 10, plate.transform.position.y, plate.transform.position.z);
+            this.transform.position = new Vector3(plate.transform.position.x, plate.transform.position.y, plate.transform.position.z);
             if(player.GetComponent<player_control>().t_coll)
             {
                 player.GetComponent<player_control>().t_d = true;

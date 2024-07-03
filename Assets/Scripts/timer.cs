@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class timer : MonoBehaviour
 {
-    private void Start()
+    public float t;
+    void Start()
     {
-        Invoke("Loading_scene", 20f);
+        Invoke("Loading_scene", t);
     }
     void Loading_scene()
     {

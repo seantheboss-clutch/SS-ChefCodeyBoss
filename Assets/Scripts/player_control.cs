@@ -15,17 +15,14 @@ public class player_control : MonoBehaviour
     public GameObject eggo;
     public GameObject hand;
     public bool t_coll;
-    public GameObject e;
     public Renderer e_coll_r;
     public bool c_coll;
     public GameObject cup;
     public GameObject toaster_touch_object;
-    public int displacement = 2;
+    public int displacement = 3;
     public bool t_d;
-    // Start is called before the first frame update
     void Start()
     {
-        //wake.Play("wake_up");
         Invoke("Disable", 3f);
 
     }
@@ -34,23 +31,18 @@ public class player_control : MonoBehaviour
     {
         this.GetComponent<Animator>().enabled = false;
     }
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey("right") || Input.GetKey("d"))
         {
             rotation = Quaternion.Euler(0, rrot, 0);
-            //print(rotation);
             rrotation = new Vector3(0, rotation.y, 0);
-            //Quaternion r = transform.rotation;
             this.transform.Rotate(rrotation);
             x_rot++;
-            //print(r + "         " + transform.rotation);*/
         }
         if (Input.GetKey("left") || Input.GetKey("a"))
         {
             rotation = Quaternion.Euler(0, -rrot, 0);
-            //print(rotation);
             rrotation = new Vector3(0, rotation.y, 0);
             this.transform.Rotate(rrotation);
             x_rot--;
@@ -71,7 +63,6 @@ public class player_control : MonoBehaviour
                 playerrb.velocity = transform.TransformDirection(Vector3.up * (speed+1));
                 jump = false;
             }
-            //print(playerrb.velocity.y);
         }
         if (Input.GetKey("0"))
         {
@@ -88,7 +79,7 @@ public class player_control : MonoBehaviour
             {
                 levitation(eggo,displacement+1);
             }
-            else if(t_d)
+            else
             {
                 levitation(eggo, displacement);
             }
@@ -104,26 +95,26 @@ public class player_control : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-       if(collision.gameObject.tag == "water")
-       {
+        if (collision.gameObject.tag == "water")
+        {
             manager.GetComponent<manager>().one = true;
             c_coll = true;
-       }
-       if (collision.gameObject.tag == "end")
-       {
+        }
+        if (collision.gameObject.tag == "end")
+        {
             manager.GetComponent<manager>().end = true;
-       }
-       if(collision.gameObject.tag == "toast")
-       {
+        }
+        if (collision.gameObject.tag == "toast")
+        {
             t_coll = true;
-       }
-       if(collision.gameObject.tag == "plate")
+        }
+        if (collision.gameObject.tag == "plate")
         {
             c_coll = false;
             cup.GetComponent<cup_collide>().can_drop_cup = true;
         }
 
-       if (Physics.Raycast(this.transform.position, Vector3.down, 5f) || collision.gameObject.tag == "ground")
+        if (Physics.Raycast(this.transform.position, Vector3.down, 5f) || collision.gameObject.tag == "ground")
        {
            jump = true;
        }
