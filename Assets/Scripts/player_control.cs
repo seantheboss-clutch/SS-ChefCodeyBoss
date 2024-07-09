@@ -19,7 +19,7 @@ public class player_control : MonoBehaviour
     public bool c_coll;
     public GameObject cup;
     public GameObject toaster_touch_object;
-    public int displacement = 3;
+    public int displacement = 5;
     public bool t_d;
     void Start()
     {
@@ -77,7 +77,7 @@ public class player_control : MonoBehaviour
         {
             if (c_coll)
             {
-                levitation(eggo,displacement+1);
+                levitation(eggo,displacement+3);
             }
             else
             {

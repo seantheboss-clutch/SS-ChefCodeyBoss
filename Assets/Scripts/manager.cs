@@ -15,11 +15,13 @@ public class manager : MonoBehaviour
     public float m;
     public float h = 0;
     public Text S;
-    public Text score;
-
+    public Text gold;
+    public Text silver;
+    public Text bronze;
+    public Text lost;
     private void Start()
     {
-        score.text = "";
+        lost.text = "";
     }
     void Update()
     {
@@ -43,36 +45,40 @@ public class manager : MonoBehaviour
         if (m <= 0 && s <= 0)
         {
             Lost();
-            Invoke("start_again", 3f);
+            Invoke("restart", 3f);
         }
         if (end)
         {
             if(one & two & three)
             {
-                if(s < 90 && s >= 60 )
-                {
-                    score.text = "GOLD";
+                if (s < 90 && s >= 55)
+                {                
+                    prize(gold);
                 }
-                else if(s < 60 && s >= 30)
+                else if (s < 55 && s >= 30)
                 {
-                    score.text = "SILVER";
+                    prize(silver);
                 }
                 else
                 {
-                    score.text = "BRONZE";
+                    prize(bronze);
                 }
-                SceneManager.LoadScene(0);
 
             }
-            else
-            {
-                Lost();
-                SceneManager.LoadScene(0);
-            }
+            Invoke("restart", 5f);
         }
-        void Lost()
-        {
-            score.text = "YOU LOSE";
-        }
+    }
+    void Lost()
+    {
+        lost.text = "YOU LOSE";
+    }
+
+    void restart()
+    {
+        SceneManager.LoadScene(0);
+    }
+    void prize(Text medal_text)
+    {
+        medal_text.color = Color.magenta;
     }
 }
